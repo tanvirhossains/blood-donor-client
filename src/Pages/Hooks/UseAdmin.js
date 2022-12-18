@@ -7,6 +7,7 @@ const UseAdmin = user => {
 
     useEffect(() => {
         const email = user?.email
+        
         if (email) {
             // fetch(`https://vast-temple-90550.herokuapp.com/admin/${email}`, {
             fetch(`http://localhost:5000/admin/${email}`, {
