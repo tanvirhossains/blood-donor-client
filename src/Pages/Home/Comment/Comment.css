@@ -1,0 +1,5 @@
+div.limit {
+   white-space: break-spaces;
+    overflow: hidden;
+    text-overflow:initial
+}
