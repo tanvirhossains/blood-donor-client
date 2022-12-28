@@ -6,21 +6,21 @@ const Dashboard = () => {
 
     return (
         <div>
-        <div class="drawer drawer-mobile">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer drawer-mobile bg-gray-300">
+            <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content ">
                 {/* <!-- Page content here --> */}
-                <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-                <h1 className=' text-2xl text-primary font-bold'>Well Come to The Dashboard</h1>
+               
+            
                 <Outlet></Outlet>
             </div>
             <div class="drawer-side">
-                <label for="my-drawer-2" class="drawer-overlay"></label>
+                <label for="dashboard-sidebar" class="drawer-overlay"></label>
                 <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                     {/* <!-- Sidebar content here --> */}
-                    <li><Link to='/dashboard'>Sidebar Item 1</Link></li>
-                    <li><Link to='/dashboard/review'>My review</Link></li>
-                    <li><Link to='/dashboard/history'>My history</Link></li>
+                    <li><Link to='/dashboard'>Admin Panel</Link></li>
+                    <li><Link to='/dashboard/donorList'>Donor List</Link></li>
+                    <li><Link to='/dashboard/signin'>My history</Link></li>
                     {/* {admin && <li><Link to='/dashboard/users'>All User</Link></li>} */}
                 </ul>
 

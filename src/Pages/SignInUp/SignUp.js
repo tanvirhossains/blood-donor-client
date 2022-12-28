@@ -1,11 +1,12 @@
 import React from 'react';
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
+    const [webUser] = useAuthState(auth)
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fUser, fLoading, fError] = useSignInWithFacebook(auth);
@@ -18,6 +19,7 @@ const SignUp = () => {
         eLoading,
         eError,
     ] = useCreateUserWithEmailAndPassword(auth);
+    console.log(eUser);
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const onSubmit = async data => {
@@ -28,6 +30,14 @@ const SignUp = () => {
         toast("This is done")
         // navigate('/appointment')
     };
+
+
+    const navigate = useNavigate();
+
+
+    if (webUser) {
+        navigate('/')
+    }
 
     let emailError;
     if (eError || gError) {
@@ -64,6 +74,8 @@ const SignUp = () => {
                                                     message: 'Name is Required'
                                                 }
                                             })} />
+
+
                                         <label class="label">
                                             {errors.name?.type === 'required' && <span className='text-red-600 '> {errors.name.message} </span>}
 
@@ -73,7 +85,7 @@ const SignUp = () => {
                                         </label>
                                         <input
                                             type="email"
-                                            placeholder="Your Email"
+                                            placeholder="example@email.com"
                                             class="input input-bordered input-error bg-none w-96 text-black "
                                             {...register("email", {
                                                 required: {

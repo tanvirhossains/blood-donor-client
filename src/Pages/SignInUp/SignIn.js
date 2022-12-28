@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -10,9 +10,9 @@ const SignIn = () => {
 
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook, userFb, loadingFb, errorFb] = useSignInWithFacebook(auth);
-    const [sendPasswordResetEmail, sending, pasResError] = useSendPasswordResetEmail(
-        auth
-    );
+    const [sendPasswordResetEmail, sending, pasResError] = useSendPasswordResetEmail(auth);
+
+    const [webUser] = useAuthState(auth)
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [
@@ -22,6 +22,13 @@ const SignIn = () => {
         signError,
     ] = useSignInWithEmailAndPassword(auth);
 
+
+    const navigate = useNavigate();
+
+
+    if(webUser){
+        navigate('/')
+    }
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
