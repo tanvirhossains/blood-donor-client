@@ -21,7 +21,7 @@ const DonorList = () => {
     //         });
     // };
 
-    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch('http://localhost:5000/donor').then(res => res.json()))
+    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch('http://localhost:5000/donors').then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
