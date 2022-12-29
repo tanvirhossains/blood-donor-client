@@ -1,5 +1,7 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../Shared/Loading';
 
 const UserRow = ({ user, index, }) => {
     const { email, role } = user
@@ -24,6 +26,12 @@ const UserRow = ({ user, index, }) => {
                 }
 
             })
+    }
+
+    const { data: donorList, isLoading } = useQuery('donorList', () => fetch('http://localhost:5000/donor').then(res => res.json()))
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
     return (

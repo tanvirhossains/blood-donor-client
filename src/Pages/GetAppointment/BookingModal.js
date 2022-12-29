@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { format } from 'date-fns';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -21,10 +21,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
             patient: user.email,
             patientName: user.displayName,
             phone: event.target.phone.value
-
         }
-
-
 
         //fetch('https://vast-temple-90550.herokuapp.com/booking', {
         fetch('http://localhost:5000/booking', {
@@ -38,7 +35,6 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
             .then(data => {
                 if (data.success) {
                     toast(`Appointment is set , ${formattedDate} at ${slot}`)
-
                 }
                 else {
                     toast.error(`Already have an appointment on ${data.booking?.date} at ${data.booking?.slot}`)
@@ -47,13 +43,10 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
                 setTreatment(null)
                 console.log(data)
             }
-
             )
-
-
     }
 
-    return (
+    return (    
 
         <div>
             <input type="checkbox" id="booking-modal" class="modal-toggle" />
@@ -76,12 +69,6 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
                 </div>
             </div>
         </div>
-
-
-
-
-
     );
 };
-
 export default BookingModal;
