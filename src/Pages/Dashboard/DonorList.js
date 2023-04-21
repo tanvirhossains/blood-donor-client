@@ -1,17 +1,20 @@
 // import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const DonorList = () => {
 
-    // const [donorList, setDonorList] = useState([]);
+    const [user] = useAuthState(auth)
+    // const [donorsList, setDonorList] = useState([]);
     // useEffect(() => {
     //     fetchProducts();
     // }, []);
     // const fetchProducts = () => {
     //     axios
-    //         .get('http://localhost:5000/donor')
+    //         .get('http://localhost:5000/donors')
     //         .then((res) => {
     //             console.log(res);
     //             setDonorList(res.data);
@@ -21,11 +24,13 @@ const DonorList = () => {
     //         });
     // };
 
-    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch('http://localhost:5000/donors').then(res => res.json()))
+    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch(`http://localhost:5000/donors`).then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
     }
+
+    console.log(donorsList);
     return (
         <div>
             <h1>this is donor list outlet?????</h1>
@@ -52,7 +57,10 @@ const DonorList = () => {
                                     <td>{donor.lastBlood}</td>
                                     <td>{donor.gender}</td>
                                     <td>{donor.mobile}</td>
-                             
+                                    <td><button className='btn btn-sm'>< a href={donor.facebook}>facebook </a>  </button></td>
+                                    <td>{donor.facebook}</td>
+
+
 
                                 </tr>
                             )

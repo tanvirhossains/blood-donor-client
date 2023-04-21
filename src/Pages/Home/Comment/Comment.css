@@ -1,5 +1,12 @@
-div.limit {
-   white-space: break-spaces;
+#limit {
+    height: 50px;
+    white-space: break-spaces;
     overflow: hidden;
-    text-overflow:initial
+    text-overflow: initial
+}
+
+#overflowTest {
+    height: 80px;
+    overflow: hidden;
+
 }

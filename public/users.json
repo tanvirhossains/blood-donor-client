@@ -1,20 +1,21 @@
 [
   {
-    "_id": 1,
+    
     "name": "Teeth Orthodontics",
     "email": "eamil@gmail.com",
     "bldGroup": "B+",
-    "lastBlood": " 2-3-22",
-    "presentAddress": "comilla",
-    "mobile": 140580832,
-    "whatsUp": 10234958,
-    "telegram": 3489384934,
+    "lastBlood": " 5-10-22",
+    "presentAddress": "dhaka",
+    "mobile": "1405997068",
+    "whatsUp": 1405808071,
+    "telegram": 1405808071,
     "facebook": "link",
-    "bTimes": 3,
-    "weight": 34,
-    "height": 4.5,
+    "bTimes": 7,
+    "weight": 60,
+    "height": 5.10,
     "gender": "male",
-    "bmi": 23
+    "bmi": 23,
+    "role": "admin"
   },
   {
     "_id": 3,

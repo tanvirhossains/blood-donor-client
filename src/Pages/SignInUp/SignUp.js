@@ -4,13 +4,13 @@ import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithFacebook,
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import Loading from '../Shared/Loading';
 
 const SignUp = () => {
     const [webUser] = useAuthState(auth)
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fUser, fLoading, fError] = useSignInWithFacebook(auth);
-
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [
@@ -21,20 +21,93 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     console.log(eUser);
 
+
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+
     const onSubmit = async data => {
         // console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({ displayName: data.name });
-        alert('Your Sigh up completed!');
+
+
+        dataSending(data);
+        // const userData = {
+        //     name: data.name ,
+        //     email: gUser.email,
+        // }
+
+        // fetch('http://localhost:5000/donor', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json',
+        //     },
+
+        //     body: JSON.stringify(userData),
+
+        // })
+        //     .then((response) => response.json())
+        //     .then((json) => console.log(json));
+
+
+        console.log("data imported by email user")
+
         toast("This is done")
         // navigate('/appointment')
     };
 
 
+    if (gLoading) {
+        <Loading> </Loading>
+
+    }
+    if (gUser) {
+
+        console.log("this is a google new user");
+        <Loading> </Loading>
+
+
+        const userData = {
+            name: webUser.displayName,
+            email: webUser.email
+        }
+        fetch('http://localhost:5000/donor', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+    }
+
+    // console.log("data imported by google user")
+
+    // CALLING post fetch
+    const dataSending = data => {
+
+        const userData = {
+            name: (data.name ? data.name : webUser.displayName),
+            email: (data.email ? data.email : webUser.email)
+        }
+        if (webUser) {
+
+
+            fetch('http://localhost:5000/donor', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+        }
+    }
+
+
     const navigate = useNavigate();
-
-
     if (webUser) {
         navigate('/')
     }
@@ -43,6 +116,9 @@ const SignUp = () => {
     if (eError || gError) {
         emailError = <h1 className='text-red-600 font-bold'>{eError?.message || gError?.message}</h1>
     }
+
+
+
 
     return (
         <div>
@@ -63,7 +139,6 @@ const SignUp = () => {
                                         <label class="label">
                                             <span class="label-text font-bold text-xl"> Enter Your Name</span>
                                         </label>
-
                                         <input
                                             type="text"
                                             placeholder="Your Name"
@@ -75,10 +150,8 @@ const SignUp = () => {
                                                 }
                                             })} />
 
-
                                         <label class="label">
                                             {errors.name?.type === 'required' && <span className='text-red-600 '> {errors.name.message} </span>}
-
                                         </label>
                                         <label class="label">
                                             <span class="label-text font-bold text-xl"> Enter Your Email</span>
@@ -134,7 +207,7 @@ const SignUp = () => {
                                 {/* ------------divider part start here */}
                                 <div class="divider text-black px-5 py-0 font-bold">OR
                                 </div>
-                                <ToastContainer />
+                                {/* <ToastContainer /> */}
                                 <button class="btn " onClick={() => signInWithGoogle()}>Sign Up With Google</button>
                                 <button class="btn " onClick={() => signInWithFacebook()}>Sign Up With Facebook</button>
                             </div>

@@ -7,13 +7,13 @@ const Comments = () => {
     const comments = [
         {
             _id: 1,
-            name: 'Mohammad Abdullah ',
+            name: 'Mohammad Anas ',
             comments: 'this is lorem dj',
             image: person
         },
         {
             _id: 2,
-            name: 'Mohammad Abdullah ',
+            name: 'Mohammad Jawad ',
             comments: 'this is lorem dj',
             image: person
         },
@@ -32,7 +32,7 @@ const Comments = () => {
     ]
 
     return (
-        <section className='my-28 mx-14'>
+        <section className='lg:my-28 lg:mx-14 mx-4 '>
 
             <div className='flex justify-between'>
                 <div>
@@ -43,9 +43,9 @@ const Comments = () => {
                     <img src={quote} className="w-24 lg:w-48 " alt="" />
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-9'>
                 {
-                    comments.map(comment => <Comment
+                    comments.slice(0,3).map(comment => <Comment
                         key={comments.at}
                         comment={comment}
                     >
