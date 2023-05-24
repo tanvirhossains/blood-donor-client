@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import Usetitle from '../../Hooks/Usetitle';
 
 const Dashboard = () => {
+    Usetitle("dashboard")
 
 
     return (

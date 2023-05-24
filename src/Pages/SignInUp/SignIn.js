@@ -26,7 +26,7 @@ const SignIn = () => {
     const navigate = useNavigate();
 
 
-    if(webUser){
+    if (webUser) {
         navigate('/')
     }
 
@@ -37,7 +37,7 @@ const SignIn = () => {
     };
     const handleResetPassword = async (data) => {
         toast('password reset, check your email please')
-       
+
         if (data.email) {
             await sendPasswordResetEmail(data.email)
         }
@@ -96,10 +96,10 @@ const SignIn = () => {
                                             })} />
                                         <p className='text-black'>Forget password? <button>
                                             <span onSubmit={handleResetPassword} className='text-red-600'>Reset password </span>
-                                             </button>
-                                            </p>
+                                        </button>
+                                        </p>
                                         {/* <input className='text-orange-500 ' type="submit" value="Reset Password " /> */}
-                            
+
                                         <label class="label">
                                             {errors.email?.type === 'required' && <span className='text-red-600 '> {errors.email.message} </span>}
                                             {errors.email?.type === 'pattern' && <span className='text-red-600'> {errors.email.message} </span>}
@@ -134,7 +134,7 @@ const SignIn = () => {
                                     <input className='btn w-full mt-3' type="submit" value="Log in " />
                                     <p className='text-black'>Are you new here? <Link className='text-primary' to='/signup'>Create new account</Link></p>
                                 </form>
-<ToastContainer/>
+                                <ToastContainer />
 
                                 {/* ------------divider part start here */}
                                 <div class="divider text-black px-5 py-0 font-bold">OR</div>

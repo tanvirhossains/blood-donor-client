@@ -37,7 +37,7 @@ const SignUp = () => {
         //     email: gUser.email,
         // }
 
-        // fetch('http://localhost:5000/donor', {
+        // fetch('http://localhost:9000/donor', {
         //     method: 'POST',
         //     headers: {
         //         'Content-type': 'application/json',
@@ -71,7 +71,7 @@ const SignUp = () => {
             name: webUser.displayName,
             email: webUser.email
         }
-        fetch('http://localhost:5000/donor', {
+        fetch('http://localhost:9000/donor', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -94,7 +94,7 @@ const SignUp = () => {
         if (webUser) {
 
 
-            fetch('http://localhost:5000/donor', {
+            fetch('http://localhost:9000/donor', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',

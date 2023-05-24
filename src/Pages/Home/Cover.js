@@ -2,12 +2,14 @@
 import React from 'react';
 import cover from '../../Assets/cover.jpg';
 import './Home.css'
+import Navbar from './Navbar';
 
 
 
 const Cover = () => {
     return (
         <div>
+            {/* <Navbar></Navbar> */}
             <div class='cover pt-24 hero  ' style={{ backgroundImage: `url(${cover})` }}>
 
                 <div className=''>

@@ -30,11 +30,11 @@ const Profile = () => {
 
 
     //-----------------data fetching using email--------------
-    // const { data: data, isLoading, refetch } = useQuery('single', () => fetch(`http://localhost:5000/donors?email=${user.email}`).then(res => res.json()))
+    // const { data: data, isLoading, refetch } = useQuery('single', () => fetch(`http://localhost:9000/donors?email=${user.email}`).then(res => res.json()))
 
 
     const [data, setDonorData] = useState([]);
-    axios.get(`http://localhost:5000/donors?email=${user.email}`)
+    axios.get(`http://localhost:9000/donors?email=${user.email}`)
         .then((res) => {
             console.log(res);
             setDonorData.JSON.parse(res.data);
@@ -43,7 +43,7 @@ const Profile = () => {
             console.log(err);
         });
     // JSON.parse()
-    // const { data, isLoading, refetch } = useQuery('admins', () => fetch(`http://localhost:5000/donors?email=${user.email}`).then(res => res.json()))
+    // const { data, isLoading, refetch } = useQuery('admins', () => fetch(`http://localhost:9000/donors?email=${user.email}`).then(res => res.json()))
     // if (isLoading) {
     //     <Loading></Loading>
     // }
@@ -90,7 +90,7 @@ const Profile = () => {
         console.log(userProfile);
         console.log(userInfo);
 
-        fetch(`http://localhost:5000/donor/${user.email}`, {
+        fetch(`http://localhost:9000/donor/${user.email}`, {
             method: 'PUT',
             body: JSON.stringify(userProfile),
             headers: {

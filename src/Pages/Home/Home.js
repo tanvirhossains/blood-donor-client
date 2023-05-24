@@ -5,8 +5,10 @@ import Comments from './Comment/Comments';
 import Cover from './Cover';
 import CoverText from './CoverText';
 import Feedback from './Feedback/Feedback';
+import Usetitle from '../../Hooks/Usetitle';
 
 const Home = () => {
+    Usetitle("Home")
     return (
         <div>
             <Cover></Cover>

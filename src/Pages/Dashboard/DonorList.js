@@ -14,7 +14,7 @@ const DonorList = () => {
     // }, []);
     // const fetchProducts = () => {
     //     axios
-    //         .get('http://localhost:5000/donors')
+    //         .get('http://localhost:9000/donors')
     //         .then((res) => {
     //             console.log(res);
     //             setDonorList(res.data);
@@ -24,7 +24,7 @@ const DonorList = () => {
     //         });
     // };
 
-    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch(`http://localhost:5000/donors`).then(res => res.json()))
+    const { data: donorsList, isLoading, refetch } = useQuery('admins', () => fetch(`http://localhost:9000/donors`).then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
